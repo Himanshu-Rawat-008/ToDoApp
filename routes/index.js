@@ -1,5 +1,9 @@
 const express = require('express');
 
+// extracting Schema
+const List = require('../models/list.js');
+
+
 const router = express.Router();
 const homeController = require('../controllers/homeController');
 

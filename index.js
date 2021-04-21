@@ -1,11 +1,18 @@
 const express = require('express');
 const port = 8000;
-// extracting Schema
-const List = require('./models/list.js');
 // database connecting 
 
-const db = require('./config/mongoose')
+const db = require('./config/mongoose');
 const app = express();
+
+// since data received from user is encode we need a parse
+// middleware
+app.use(express.urlencoded());
+
+// it find out folder assests in directory
+// it contains css images fonts folder
+app.use(express.static('assests'));
+
 
 // any req comes goes to routes/index.js
 app.use('/', require('./routes'));
