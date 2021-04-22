@@ -5,10 +5,14 @@ const listSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    dueDate: {
-        type : Date,
+    duedate: {
+        type : String,
         required : true
-        }
+        },
+    category : {
+        type : String,
+        required : true
+    }
 });
 
 // Collections
