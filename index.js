@@ -11,6 +11,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views','./views');
 
+
+// app.use(bodyParser.urlencoded({extended: true}));
 // since data received from user is encode we need a parse
 // middleware
 app.use(express.urlencoded());
@@ -53,8 +55,21 @@ app.post('/create-list',function(req,res){
 })
 
 // delete contact
-app.get('/delete-list', function(req,res){
-    
+app.post('/delete-list', function(req,res){
+    console.log(req.body);
+    // getting each element form body
+    Object.keys(req.body).forEach(function(key) {
+        console.log(key);
+        List.findByIdAndDelete(key, function(err) {
+            
+            if (err) {
+                console.log('Error in deleting an item from database', err);
+                return;
+            }
+            console.log('item is deleted');
+        });
+    });
+    return res.redirect('back');
 })
 
 app.listen(port, function(err){
